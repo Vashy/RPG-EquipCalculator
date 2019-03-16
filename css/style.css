@@ -7,6 +7,7 @@ html {
 body {
     max-width: 55%;
     margin: auto;
+    margin-bottom: 2em;
 }
 
 h1 {
@@ -14,12 +15,14 @@ h1 {
 }
 
 #show-equip {
+    margin-top: 2em;
     overflow-x: auto;
+    display: flex;
+    justify-content: center;
 }
 
-table {
+#show-equip table {
     width: 50%;
-    margin: auto;
     border-collapse: collapse;
 }
 

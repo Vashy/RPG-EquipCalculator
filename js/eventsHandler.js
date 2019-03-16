@@ -66,12 +66,32 @@ function displayText() {
   let element = document.getElementById("show-equip");
   removeChilds("show-equip");
 
-  Object.keys(equipValue.tots).forEach()
+  let result = document.createElement("p");
+
+  Object.keys(equipValue.tots)
+    .sort((a, b) => equipValue.tots[b] - equipValue.tots[a])
+    .forEach(key => {
+      result.appendChild(document.createTextNode(key + ": " + equipValue.tots[key]));
+      result.appendChild(document.createElement("br"));
+      // result += key + ": " + equipValue.tots[key] + " <br />";
+  });
+
+  let lastRow = "Total: " + equipValue.tot;
+  result.appendChild(document.createTextNode("-".repeat(lastRow.length)));
+  result.appendChild(document.createElement("br"));
+  result.appendChild(document.createTextNode(lastRow));
+  element.appendChild(result);
 }
 
-function displayResult() {
+// function displayResult() {
+//   let equipValue = calculator.parse("equip-content");
+
+//   let element = document.getElementById("show-equip");
+//   removeChilds("show-equip");
+
+//   element.appendChild(node);
   
-}
+// }
 
 function switchOutputFormat() {
   
