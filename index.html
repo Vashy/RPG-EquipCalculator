@@ -14,19 +14,26 @@
 </head>
 
 <body>
-  <h1>Pathfinder RPG Equip Calculator</h1>
+  <header>
+    <h1>Pathfinder RPG Equip Calculator</h1>
+  </header>
 
-  <textarea id="equip-content" autofocus="true" placeholder="Text ..." ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"></textarea>
-  <div class="buttons">
-    <button type="button" onclick="displayText()">Calculate</button>
-    <button type="button" onclick="displayText()">Upload</button>
-  </div>
+  <main>
+    <textarea id="equip-content" autofocus="true" placeholder="Text ..." ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"></textarea>
+    <div class="buttons">
+      <button type="button" onclick="displayResult()">Calculate</button>
+      <button id="switcher" type="button" onclick="switchOutputFormat()"></button>
+      <!-- <button type="button" onclick="displayResult()">Upload</button> -->
+    </div>
+  
+    <div id="show-equip"></div>
+  </main>
 
-  <div id="show-equip"></div>
-
-  <div class="buttons">
-    <button id="switcher" type="button" onclick="switchOutputFormat()"></button>
-  </div>
+  <!-- <div class="buttons">
+  </div> -->
+  <footer>
+    <p>Footer</p>
+  </footer>
 
   <script src="js/cookies.js"></script>
   <script src="js/equip.js"></script>

@@ -29,27 +29,65 @@ function checkCookie(cname) {
   return false;
 }
 
-class CookieHandler {
+class PrefCookieHandler {
   constructor(cookieName) {
-    this.cookieName = cookieName;
+    this._cookieName = cookieName;
   }
 
-  setCookie(cvalue, exdays) {
-    setCookie(this.cookieName, cvalue, exdays);
+  // setCookie(cvalue, exdays) {
+  //   setCookie(this._cookieName, cvalue, exdays);
+  // }
+
+  // getCookie() {
+  //   return getCookie(this._cookieName);
+  // }
+
+  // checkCookie() {
+  //   return checkCookie(this._cookieName);
+  // }
+
+  swap() {
+    if (this.cookie == "table") {
+      setCookie(this._cookieName, "text", 30);
+      return "table";
+    }
+
+    setCookie(this._cookieName, "table", 30);
+    return "text";
   }
 
-  getCookie() {
+  get cookie() {
     return getCookie(this.cookieName);
   }
 
-  checkCookie() {
-    return checkCookie(this.cookieName);
+  get cookieName() {
+    return this._cookieName;
+  }
+
+  get isTable() {
+    if (this.cookie == 'table')
+      return true;
+    return false;
+  }
+
+  get isText() {
+    if (this.cookie == 'text')
+      return true;
+    return false;
+  }
+
+  get alternative() {
+    let cookie = this.cookie;
+    if (cookie == "table")
+      return "text";
+    else
+      return "table";
   }
 }
 
-const preferenceCookie = new CookieHandler("preference");
-let preference = preferenceCookie.getCookie();
-if (preference == "") {
-  preferenceCookie.setCookie("table", 30);
-  preference = "table";
+const preferenceCookie = new PrefCookieHandler("preference");
+// let preference = preferenceCookie.cookie;
+if (preferenceCookie.cookie == "") {
+  setCookie(preferenceCookie.cookieName,"table", 30);
+  // preference = "table";
 }

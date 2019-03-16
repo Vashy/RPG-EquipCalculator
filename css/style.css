@@ -6,16 +6,18 @@ html {
 
 body {
     max-width: 55%;
+    box-sizing: border-box;
     margin: auto;
     margin-bottom: 2em;
 }
 
-h1 {
+
+header h1 {
     text-align: center;
 }
 
 #show-equip {
-    margin-top: 2em;
+    /* margin-top: 2em; */
     overflow-x: auto;
     display: flex;
     justify-content: center;
@@ -47,13 +49,6 @@ textarea {
     font-size: 1.3em;
 }
 
-/* 
-#equip-content {
-    border: 5px solid blue;
-    width:  200px;
-    height: 100px;
-} */
-
 .buttons {
     display: flex;
     justify-content: center;
@@ -76,7 +71,7 @@ button {
 }
 
 button:hover {
-    background-color: chocolate; /* Green */
+    background-color: chocolate;
     color: white;
 }
 
@@ -86,6 +81,22 @@ button:hover {
 
 .table-footer {
     font-weight: bold;
+}
+
+footer {
+    /* border-top: 1px solid; */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    padding: 0.4em;
+    background-color: chocolate;
+    color: white;
+    margin-top: 1em;
+}
+
+footer>p {
+    display: block;
 }
 
 

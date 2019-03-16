@@ -7,8 +7,8 @@ function removeChilds(id) {
 function displayTable() {
   let equipValue = calculator.parse("equip-content");
 
-  let element = document.getElementById("show-equip");
-  removeChilds("show-equip");
+  // let element = document.getElementById("show-equip");
+  // removeChilds("show-equip");
 
   // table and tHead
   let table = document.createElement("table");
@@ -56,15 +56,16 @@ function displayTable() {
   table.appendChild(trFooter);
 
   // appends table to the DOM
-  element.appendChild(table);
-  document.getElementById("switcher").style = "display: inline-block;";
+  // element.appendChild(table);
+  return table;
+  // document.getElementById("switcher").style = "display: inline-block;";
 }
 
 function displayText() {
   let equipValue = calculator.parse("equip-content");
 
-  let element = document.getElementById("show-equip");
-  removeChilds("show-equip");
+  // let element = document.getElementById("show-equip");
+  // removeChilds("show-equip");
 
   let result = document.createElement("p");
 
@@ -80,24 +81,34 @@ function displayText() {
   result.appendChild(document.createTextNode("-".repeat(lastRow.length)));
   result.appendChild(document.createElement("br"));
   result.appendChild(document.createTextNode(lastRow));
-  element.appendChild(result);
+  // element.appendChild(result);
+  return result;
 }
 
-// function displayResult() {
-//   let equipValue = calculator.parse("equip-content");
+function displayResult() {
+  // let equipValue = calculator.parse("equip-content");
 
-//   let element = document.getElementById("show-equip");
-//   removeChilds("show-equip");
+  let element = document.getElementById("show-equip");
+  removeChilds("show-equip");
 
-//   element.appendChild(node);
+  let node;
+
+  if (preferenceCookie.isTable)
+    node = displayTable();
+  else
+    node = displayText();
+
   
-// }
+  element.appendChild(node);
+  document.getElementById("switcher").style = "display: inline-block;";
+  document.getElementById("switcher").innerHTML = "Switch to " + preferenceCookie.alternative;
+}
 
 function switchOutputFormat() {
-  
+  let text = preferenceCookie.swap();
+  document.getElementById("switcher").innerHTML = "Switch to " + text;
+  displayResult();
 }
-
-
 
 function dropHandler(ev) {
   console.log('File dropped');
@@ -107,7 +118,7 @@ function dropHandler(ev) {
   if (ev.dataTransfer.files) {
     let element = document.getElementById('equip-content');
     let reader = new FileReader();
-    reader.onload = e => { element.value = e.target.result; displayTable();};
+    reader.onload = e => { element.value = e.target.result; displayResult();};
     reader.readAsText(ev.dataTransfer.files[0]);
     // while (reader.readyState != 2) { }
 
