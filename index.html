@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>RPG Equip Calculator</title>
+  <meta name="description" content="RPG Equip Calculator">
+  <meta name="author" content="Timoty Granziero">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <h1>Pathfinder RPG Equip Calculator</h1>
+
+  <textarea id="equip-content" autofocus="true" placeholder="Text ..." ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"></textarea>
+  <div class="buttons">
+    <button type="button" onclick="displayResult()">Calculate</button>
+    <button type="button" onclick="displayResult()">Upload</button>
+  </div>
+
+  <div id="show-equip"></div>
+
+  <div class="buttons">
+    <button id="switcher" type="button" onclick="switchOutputFormat()"></button>
+  </div>
+
+  <script src="js/cookies.js"></script>
+  <script src="js/equip.js"></script>
+  <script src="js/eventsHandler.js"></script>
+</body>
+</html>
