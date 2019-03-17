@@ -1,3 +1,5 @@
+'use strict';
+
 function removeChilds(id) {
   let node = document.getElementById(id);
   while(node.firstChild)
@@ -30,16 +32,18 @@ function displayTable() {
       return equipValue.tots[a] - equipValue.tots[b];
   }).forEach(key => {
       // appends a table row containing key-value 
-      let tr = document.createElement("tr");
-      let tdCategory = document.createElement("td");
-      let tdWorth = document.createElement("td");
-      let catText = document.createTextNode(key);
-      let worthText = document.createTextNode(equipValue.tots[key]);
-      tdCategory.appendChild(catText);
-      tdWorth.appendChild(worthText);
-      tr.appendChild(tdCategory);
-      tr.appendChild(tdWorth);
-      table.appendChild(tr);
+      if (equipValue.tots[key] != 0) { // Skipping 0 values
+        let tr = document.createElement("tr");
+        let tdCategory = document.createElement("td");
+        let tdWorth = document.createElement("td");
+        let catText = document.createTextNode(key);
+        let worthText = document.createTextNode(equipValue.tots[key]);
+        tdCategory.appendChild(catText);
+        tdWorth.appendChild(worthText);
+        tr.appendChild(tdCategory);
+        tr.appendChild(tdWorth);
+        table.appendChild(tr);
+      }
   });
 
   // table footer
@@ -55,50 +59,39 @@ function displayTable() {
   trFooter.appendChild(tf2);
   table.appendChild(trFooter);
 
-  // appends table to the DOM
-  // element.appendChild(table);
   return table;
-  // document.getElementById("switcher").style = "display: inline-block;";
 }
 
 function displayText() {
   let equipValue = calculator.parse("equip-content");
-
-  // let element = document.getElementById("show-equip");
-  // removeChilds("show-equip");
-
   let result = document.createElement("p");
 
   Object.keys(equipValue.tots)
     .sort((a, b) => equipValue.tots[b] - equipValue.tots[a])
     .forEach(key => {
-      result.appendChild(document.createTextNode(key + ": " + equipValue.tots[key]));
-      result.appendChild(document.createElement("br"));
-      // result += key + ": " + equipValue.tots[key] + " <br />";
+      if (equipValue.tots[key] > 0) {
+        result.appendChild(document.createTextNode(key + ": " + equipValue.tots[key]));
+        result.appendChild(document.createElement("br"));
+      }
   });
 
   let lastRow = "Total: " + equipValue.tot;
   result.appendChild(document.createTextNode("-".repeat(lastRow.length)));
   result.appendChild(document.createElement("br"));
   result.appendChild(document.createTextNode(lastRow));
-  // element.appendChild(result);
+
   return result;
 }
 
 function displayResult() {
-  // let equipValue = calculator.parse("equip-content");
-
   let element = document.getElementById("show-equip");
   removeChilds("show-equip");
-
   let node;
-
   if (preferenceCookie.isTable)
     node = displayTable();
-  else
+  else // preferenceCookie.isText
     node = displayText();
 
-  
   element.appendChild(node);
   document.getElementById("switcher").style = "display: inline-block;";
   document.getElementById("switcher").innerHTML = "Switch to " + preferenceCookie.alternative;
@@ -133,3 +126,15 @@ function dragOverHandler(ev) {
 
   let element = document.getElementById('equip-content').style += "border: 4px solid blue; background-color: lightgray;";
 }
+
+function loadResult() {
+  if (document.getElementById("equip-content").value != "") {
+    displayResult();
+  }
+}
+
+document.getElementById("equip-content").onpaste = e => {
+  // e.preventDefault();
+  // alert("porcoddue");
+  displayResult();
+};

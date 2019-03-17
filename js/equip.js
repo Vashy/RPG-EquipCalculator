@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Defines a EquipCalculator
+ * 
+ * @property {RegExp} recordRegex - RegExp for record matches. 
+ * @property {RegExp} sectionRegex - RegExp for record matches. 
+ */
 class EquipCalculator {
   constructor(recordRegEx, sectionRegEx) {
     this._recordRegEx = new RegExp(recordRegEx);
@@ -78,5 +84,24 @@ const calculator = new EquipCalculator(
   /[\w \t\d]+/,
 );
 
-// let equipValue = calculator.parse("equip-content");
+
+function placeholderEquip(param=1) {
+  let result = "";
+  switch(param) {
+    case 1:
+      result = "Cost\tCardinality\titem name and stuff\n\n";
+      result += "12\t3x\t\tScroll of CFL\n\n";
+      result += "Named Section\n";
+      result += "360\t1\t\tValid item\n";
+      result += "720\t1x\t\tAnother valid item\n\n";
+      result += "Another Named Section\n";
+      result += "360\t3\t\tValid item\n";
+      result += "720\t1x\t\tAnother valid item\n\n";
+      result += "..."
+  }
+  return result;
+}
+
+document.getElementById("equip-content").setAttribute("placeholder", placeholderEquip());
+
 

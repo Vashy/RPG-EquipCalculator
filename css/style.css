@@ -1,16 +1,25 @@
 html {
     font-family: 'Courier New', Courier, monospace;
-    /* background-color: darkslategray; */
-    /* color: white; */
+    background-color: #777;
+    color: white;
 }
 
 body {
     max-width: 55%;
-    box-sizing: border-box;
     margin: auto;
     margin-bottom: 2em;
 }
 
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+header {
+    border-bottom: 2px solid #fff;
+    margin-bottom: 1em;
+}
 
 header h1 {
     text-align: center;
@@ -36,10 +45,14 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: #dfdfdf;
+    background-color: #ccc;
+    color: #000;
 }
 
 textarea {
+    /* box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; */
     display: block;
     width: 100%;
     height: 200pt;
@@ -55,12 +68,28 @@ textarea {
     align-items: center;
 }
 
+/* ----
+  Links
+  ----- */
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
 button {
-  background-color: white; /* Green */
-  color: chocolate;
-  padding: 1em 2em;
+  background-color: #fff;
+  letter-spacing: 0.1em;
+  word-spacing: 0.1em;
+  color: #777;
+  font-weight: bold;
+  padding: 1em 1em;
   border-collapse: collapse;
-  border: 2px solid chocolate;
+  border: 1px solid #777;
   /* border-radius: 8px; */
   margin: 1em 0 0 -2px;
   text-align: center;
@@ -71,8 +100,9 @@ button {
 }
 
 button:hover {
-    background-color: chocolate;
-    color: white;
+    background-color: #777;
+    border: 2px solid #fff;
+    color: #fff;
 }
 
 #switcher {
@@ -84,19 +114,21 @@ button:hover {
 }
 
 footer {
-    /* border-top: 1px solid; */
+    width: 100%;
+    border-top: 2px solid #fff;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     padding: 0.4em;
-    background-color: chocolate;
     color: white;
     margin-top: 1em;
 }
 
-footer>p {
-    display: block;
+footer>div {
+    display: inline-block;
+    padding: 1em;
 }
 
 

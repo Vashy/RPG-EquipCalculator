@@ -1,3 +1,4 @@
+'use strict';
 
 function setCookie(cname, cvalue, exdays) {
   let d = new Date();  
