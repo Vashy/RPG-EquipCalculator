@@ -1,8 +1,8 @@
 'use strict';
 
-function removeChilds(id) {
+function removeChildren(id) {
   let node = document.getElementById(id);
-  while(node.firstChild)
+  while (node.firstChild)
     node.removeChild(node.firstChild);
 }
 
@@ -10,7 +10,7 @@ function displayTable() {
   let equipValue = calculator.parse("equip-content");
 
   // let element = document.getElementById("show-equip");
-  // removeChilds("show-equip");
+  // removeChildren("show-equip");
 
   // table and tHead
   let table = document.createElement("table");
@@ -28,22 +28,22 @@ function displayTable() {
   table.appendChild(trHead);
 
   // sorts, ascending order by value, forEach ...
-  Object.keys(equipValue.tots).sort((a, b) =>{
-      return equipValue.tots[a] - equipValue.tots[b];
+  Object.keys(equipValue.tots).sort((a, b) => {
+    return equipValue.tots[a] - equipValue.tots[b];
   }).forEach(key => {
-      // appends a table row containing key-value 
-      if (equipValue.tots[key] != 0) { // Skipping 0 values
-        let tr = document.createElement("tr");
-        let tdCategory = document.createElement("td");
-        let tdWorth = document.createElement("td");
-        let catText = document.createTextNode(key);
-        let worthText = document.createTextNode(equipValue.tots[key]);
-        tdCategory.appendChild(catText);
-        tdWorth.appendChild(worthText);
-        tr.appendChild(tdCategory);
-        tr.appendChild(tdWorth);
-        table.appendChild(tr);
-      }
+    // appends a table row containing key-value
+    if (equipValue.tots[key] !== 0) { // Skipping 0 values
+      let tr = document.createElement("tr");
+      let tdCategory = document.createElement("td");
+      let tdWorth = document.createElement("td");
+      let catText = document.createTextNode(key);
+      let worthText = document.createTextNode(equipValue.tots[key]);
+      tdCategory.appendChild(catText);
+      tdWorth.appendChild(worthText);
+      tr.appendChild(tdCategory);
+      tr.appendChild(tdWorth);
+      table.appendChild(tr);
+    }
   });
 
   // table footer
@@ -73,7 +73,7 @@ function displayText() {
         result.appendChild(document.createTextNode(key + ": " + equipValue.tots[key]));
         result.appendChild(document.createElement("br"));
       }
-  });
+    });
 
   let lastRow = "Total: " + equipValue.tot;
   result.appendChild(document.createTextNode("-".repeat(lastRow.length)));
@@ -85,7 +85,7 @@ function displayText() {
 
 function displayResult() {
   let element = document.getElementById("show-equip");
-  removeChilds("show-equip");
+  removeChildren("show-equip");
   let node;
   if (preferenceCookie.isTable)
     node = displayTable();
@@ -111,30 +111,29 @@ function dropHandler(ev) {
   if (ev.dataTransfer.files) {
     let element = document.getElementById('equip-content');
     let reader = new FileReader();
-    reader.onload = e => { element.value = e.target.result; displayResult();};
+    reader.onload = e => {
+      element.value = e.target.result; // TODO: What is "result"?
+      displayResult();
+    };
     reader.readAsText(ev.dataTransfer.files[0]);
-    // while (reader.readyState != 2) { }
 
   }
-  let element = document.getElementById('equip-content').style -= "border: 4px solid blue; background-color: lightgray;";
+  document.getElementById('equip-content').style -= "border: 4px solid blue; background-color: lightgray;";
 }
 
 function dragOverHandler(ev) {
   console.log('File in drop zone');
 
   ev.preventDefault();
-
-  let element = document.getElementById('equip-content').style += "border: 4px solid blue; background-color: lightgray;";
+  document.getElementById('equip-content').style += "border: 4px solid blue; background-color: lightgray;";
 }
 
 function loadResult() {
-  if (document.getElementById("equip-content").value != "") {
+  if (document.getElementById("equip-content").value !== "") {
     displayResult();
   }
 }
 
-document.getElementById("equip-content").onpaste = e => {
-  // e.preventDefault();
-  // alert("porcoddue");
+document.getElementById("equip-content").onpaste = () => {
   displayResult();
 };

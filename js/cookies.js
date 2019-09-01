@@ -1,22 +1,22 @@
 'use strict';
 
 function setCookie(cname, cvalue, exdays) {
-  let d = new Date();  
-  d.setTime(d.getTime() + (exdays*24*3600*1000));
+  let d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 3600 * 1000));
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
-   name = cname + "=";
+  let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) == 0) {
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
@@ -25,9 +25,8 @@ function getCookie(cname) {
 
 function checkCookie(cname) {
   let c = getCookie(cname);
-  if (c != "")
-    return true;
-  return false;
+  return c !== "";
+
 }
 
 class PrefCookieHandler {
@@ -48,7 +47,7 @@ class PrefCookieHandler {
   // }
 
   swap() {
-    if (this.cookie == "table") {
+    if (this.cookie === "table") {
       setCookie(this._cookieName, "text", 30);
       return "table";
     }
@@ -66,20 +65,17 @@ class PrefCookieHandler {
   }
 
   get isTable() {
-    if (this.cookie == 'table')
-      return true;
-    return false;
+    return this.cookie === 'table';
+
   }
 
   get isText() {
-    if (this.cookie == 'text')
-      return true;
-    return false;
+    return this.cookie === 'text';
   }
 
   get alternative() {
     let cookie = this.cookie;
-    if (cookie == "table")
+    if (cookie === "table")
       return "text";
     else
       return "table";
@@ -88,7 +84,7 @@ class PrefCookieHandler {
 
 const preferenceCookie = new PrefCookieHandler("preference");
 // let preference = preferenceCookie.cookie;
-if (preferenceCookie.cookie == "") {
-  setCookie(preferenceCookie.cookieName,"table", 30);
+if (preferenceCookie.cookie === "") {
+  setCookie(preferenceCookie.cookieName, "table", 30);
   // preference = "table";
 }

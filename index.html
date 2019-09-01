@@ -2,43 +2,45 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>RPG Equip Calculator</title>
-  <meta name="description" content="RPG Equip Calculator">
-  <meta name="author" content="Timoty Granziero">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Equip Calculator</title>
+    <meta name="description" content="RPG Equip Calculator">
+    <meta name="author" content="Timoty Granziero">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body onload="loadResult()">
-  <header>
+<header>
     <h1>RPG Equip Calculator</h1>
-  </header>
+</header>
 
-  <main>
-    <textarea id="equip-content" autofocus="true"
-      ondrop="dropHandler(event);"
-      ondragover="dragOverHandler(event);"></textarea>
+<main>
+    <label for="equip-content">Your items</label>
+    <textarea autofocus id="equip-content"
+              ondragover="dragOverHandler(event);"
+              ondrop="dropHandler(event);"></textarea>
+
     <div class="buttons">
-      <button type="button" onclick="displayResult()">Calculate</button>
-      <button id="switcher" type="button" onclick="switchOutputFormat()"></button>
-      <!-- <button type="button" onclick="displayResult()">Upload</button> -->
+        <button type="button" onclick="displayResult()">Calculate</button>
+        <button id="switcher" type="button" onclick="switchOutputFormat()"></button>
+        <!-- <button type="button" onclick="displayResult()">Upload</button> -->
     </div>
 
     <div id="show-equip"></div>
-  </main>
+</main>
 
-  <footer>
+<footer>
     <div>
-      <a href="https://github.com/Vashy/RPG-EquipCalculator">Source code</a>
+        <a href="https://github.com/Vashy/RPG-EquipCalculator">Source code</a>
     </div>
-  </footer>
+</footer>
 
-  <script src="js/cookies.js"></script>
-  <script src="js/equip.js"></script>
-  <script src="js/eventsHandler.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/equip.js"></script>
+<script src="js/eventsHandler.js"></script>
 </body>
 </html>
